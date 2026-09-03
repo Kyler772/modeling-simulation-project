@@ -25,3 +25,22 @@ class Rocket:
             self.fuel_mass = 0
         else:
             self.fuel_mass -= amount
+
+    def get_weight(self):
+        gravity = 9.81
+        return self.get_total_mass() * gravity
+
+    def get_net_force(self):
+         return self.max_thrust - self.get_weight()
+
+    def get_acceleration(self):
+        return self.get_net_force() / self.get_total_mass()
+
+    def update_velocity(self, time_step: float):
+        self.velocity += self.get_acceleration() * time_step
+
+    def update_altitude(self, time_step: float):
+        self.altitude += self.velocity * time_step    
+    
+    
+   
