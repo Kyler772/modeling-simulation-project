@@ -6,7 +6,8 @@ class Rocket:
         fuel_mass: float,
         altitude: float,
         velocity: float,
-        max_thrust: float
+        max_thrust: float,
+        fuel_burn_rate: float
     ):
         self.name = name
         self.dry_mass = dry_mass
@@ -14,6 +15,7 @@ class Rocket:
         self.altitude = altitude
         self.velocity = velocity
         self.max_thrust = max_thrust
+        self.fuel_burn_rate = fuel_burn_rate
 
     def get_total_mass(self):
         return self.dry_mass + self.fuel_mass
@@ -31,7 +33,11 @@ class Rocket:
         return self.get_total_mass() * gravity
 
     def get_net_force(self):
-         return self.max_thrust - self.get_weight()
+         if self.fuel_mass == 0:
+            return -self.get_weight()
+         else:
+             return self.max_thrust - self.get_weight()
+         
 
     def get_acceleration(self):
         return self.get_net_force() / self.get_total_mass()
@@ -40,7 +46,10 @@ class Rocket:
         self.velocity += self.get_acceleration() * time_step
 
     def update_altitude(self, time_step: float):
-        self.altitude += self.velocity * time_step    
+        self.altitude += self.velocity * time_step   
+
+    def update_fuel(self, time_step: float): 
+        self.burn_fuel(self.fuel_burn_rate * time_step)
     
     
    
