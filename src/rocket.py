@@ -1,3 +1,5 @@
+
+
 class Rocket:
     def __init__(
         self,
@@ -52,5 +54,4 @@ class Rocket:
         self.burn_fuel(self.fuel_burn_rate * time_step)
     
     
-   
    

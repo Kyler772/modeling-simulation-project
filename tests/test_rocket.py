@@ -75,10 +75,9 @@ def test_update_fuel(atlas):
     assert atlas.fuel_mass == pytest.approx(490.0)
 
 
-def test_simulation_produces_telemetry():
-    rocket = Rocket("Atlas", 1000.0, 500.0, 0.0, 0.0, 25000.0, 10.0)
-
-    max_altitude, flight_time, telemetry = run_simulation(rocket, 0.1)
+def test_simulation_produces_telemetry(atlas):
+    
+    max_altitude, flight_time, telemetry = run_simulation(atlas, 0.1)
 
     assert len(telemetry) > 0
     assert "time" in telemetry[0]
@@ -88,10 +87,9 @@ def test_simulation_produces_telemetry():
     assert "acceleration" in telemetry[0]
 
 
-def test_simulation_reaches_apogee():
-    rocket = Rocket("Atlas", 1000.0, 500.0, 0.0, 0.0, 25000.0, 10.0)
-
-    max_altitude, flight_time, telemetry = run_simulation(rocket, 0.1)
+def test_simulation_reaches_apogee(atlas):
+    
+    max_altitude, flight_time, telemetry = run_simulation(atlas, 0.1)
 
     assert max_altitude > 0
     assert flight_time > 0
