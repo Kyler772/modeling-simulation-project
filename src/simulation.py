@@ -1,4 +1,4 @@
-from rocket import Rocket
+from src.rocket import Rocket
 
 def run_simulation(rocket: Rocket, time_step: float = 1.0):
     time = 0.0
